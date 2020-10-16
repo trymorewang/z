@@ -81,3 +81,11 @@ cron表达式：0/10 * * * * ?
 状     态：正常/暂停	
 备     注：test
 ```
+
+
+# spring-websocket
+
+1. Spring Boot 整合 Websocket 官方文档：https://docs.spring.io/spring/docs/5.1.2.RELEASE/spring-framework-reference/web.html#websocket
+2. 服务器信息采集 oshi 使用：https://github.com/oshi/oshi
+
+访问 http://localhost:8080/demo/server.html 查看效果

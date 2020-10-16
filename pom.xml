@@ -23,6 +23,7 @@
         <module>security</module>
         <module>miaosha</module>
         <module>miaosha2</module>
+        <module>spring-websocket</module>
     </modules>
 
     <properties>
