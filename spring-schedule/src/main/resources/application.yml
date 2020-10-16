@@ -1,0 +1,66 @@
+# 配置端口
+server:
+  port: 8080
+spring:
+  task:
+      # Spring 执行器配置，对应 TaskExecutionProperties 配置类。对于 Spring 异步任务，会使用该执行器。
+      execution:
+        thread-name-prefix: spring-task- # 线程池的线程名的前缀。默认为 task- ，建议根据自己应用来设置
+        pool: # 线程池相关
+          core-size: 8 # 核心线程数，线程池创建时候初始化的线程数。默认为 8 。
+          max-size: 20 # 最大线程数，线程池最大的线程数，只有在缓冲队列满了之后，才会申请超过核心线程数的线程。默认为 Integer.MAX_VALUE
+          keep-alive: 60s # 允许线程的空闲时间，当超过了核心线程之外的线程，在空闲时间到达之后会被销毁。默认为 60 秒
+          queue-capacity: 200 # 缓冲队列大小，用来缓冲执行任务的队列的大小。默认为 Integer.MAX_VALUE 。
+          allow-core-thread-timeout: true # 是否允许核心线程超时，即开启线程池的动态增长和缩小。默认为 true 。
+        shutdown:
+          await-termination: true # 应用关闭时，是否等待定时任务执行完成。默认为 false ，建议设置为 true
+          await-termination-period: 60 # 等待任务完成的最大时长，单位为秒。默认为 0 ，根据自己应用来设置
+
+
+  # 配置数据源
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/z?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false
+    username: root
+    password: liuxin666
+    type: com.alibaba.druid.pool.DruidDataSource
+    # 连接池配置
+    druid:
+      # 初始化大小，最小，最大
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      # 配置获取连接等待超时的时间
+      max-wait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位毫秒
+      time-between-eviction-runs-millis: 60000
+      # 配置一个连接在池中最小生存时间
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 'x'
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      # 打开 PSCache，并且指定每个连接上 PSCache 的大小
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      # 配置监控统计拦截的 Filter，去掉后监控界面 SQL 无法统计，wall 用于防火墙
+      filters: stat,wall,log4j2
+      # 通过 connection-properties 属性打开 mergeSql 功能；慢 SQL 记录
+      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      # 配置 DruidStatFilter
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        exclusions: .js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*
+      # 配置 DruidStatViewServlet
+      stat-view-servlet:
+        url-pattern: /druid/*
+        # IP 白名单，没有配置或者为空，则允许所有访问
+        #allow: 127.0.0.1
+        # IP 黑名单，若白名单也存在，则优先使用
+        #deny: 192.168.31.253
+        # 禁用 HTML 中 Reset All 按钮
+        reset-enable: false
+        # 登录用户名/密码
+        login-username: zjpz
+        login-password: zjpz2020*()

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.security.dao.MemberDao">
+	
+	<!-- 查询用户的所有权限 -->
+	<select id="selectSysMenuByMemberId" resultType="com.security.entity.MenuVO" parameterType="long">
+		SELECT DISTINCT
+			m.menu_id,
+			m.`name`,
+			m.url
+		FROM
+			sys_member_role ur
+		LEFT JOIN sys_role_menu rm ON ur.role_id = rm.role_id
+		LEFT JOIN sys_menu m ON rm.menu_id = m.menu_id
+		WHERE ur.member_id = #{memberId}
+	</select>
+
+	<!-- 查询用户所有角色 -->
+	<select id="selectSysRoleByMemberId" resultType="com.security.entity.RoleVO" parameterType="java.lang.Long">
+		SELECT
+			sr.role_id,
+			sr.role_name
+		FROM
+			sys_role sr
+		LEFT JOIN sys_member_role se ON se.role_id = sr.role_id
+		WHERE
+			se.member_id = #{memberId}
+	</select>
+
+	<select id="updateMember" resultType="java.lang.Integer" parameterType="java.lang.Long">
+		SELECT 1
+	</select>
+
+</mapper>

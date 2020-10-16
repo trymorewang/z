@@ -1,0 +1,18 @@
+server:
+  port: 8080
+
+rocketmq:
+  # 服务地址
+  #name-server: 47.106.180.196:9876;120.77.35.172:9876
+  name-server: 134.175.97.64:9876
+  producer:
+    # 官方建议：确保同一组中的每个消费者订阅相同的主题。
+    group: z-consumer
+    # 消息最大长度 默认1024*4(4M)
+    maxMessageSize: 4096
+    # 发送消息超时时间,默认3000
+    sendMsgTimeout: 3000
+  conumer:
+    group: z-consumer
+    # 设置一次消费消息的条数，默认为1条
+    #consumeMessageBatchMaxSize: 1

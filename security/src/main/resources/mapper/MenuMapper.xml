@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.security.dao.MenuDao">
+
+
+    <select id="getList" parameterType="Long"  resultType="com.security.entity.MenuVO">
+	   SELECT
+	        m.menu_id,
+	        m.name,
+            m.url
+        FROM
+            sys_menu m,
+            sys_role_menu r
+        WHERE
+            m.menu_id = r.menu_id
+        AND
+            r.role_id = #{roleId}
+	</select>
+
+</mapper>

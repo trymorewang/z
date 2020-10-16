@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.miaosha2.dao.OrderMapper">
+
+    <resultMap id="BaseResultMap" type="com.miaosha2.entity.MiaoshaOrder">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="user_id" property="userId" jdbcType="BIGINT"/>
+        <result column="goods_id" property="goodsId" jdbcType="BIGINT"/>
+        <result column="order_id" property="orderId" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+
+    <sql id="base_column">
+      id,user_id,goods_id,order_id,status,create_time
+    </sql>
+
+
+    <insert id="insert" parameterType="com.miaosha2.entity.MiaoshaOrder">
+      insert into miaosha_order(user_id, goods_id, order_id, status, create_time)values( #{userId}, #{goodsId},#{orderId},#{status},#{createTime} )
+    </insert>
+
+
+    <update id="closeOrder" parameterType="java.lang.String">
+        update miaosha_order set status=2 where order_id=#{orderId}
+    </update>
+
+    <select id="get" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="base_column"/>
+        from miaosha_order where order_id=#{orderId}
+    </select>
+
+</mapper>
