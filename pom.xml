@@ -24,6 +24,7 @@
         <module>miaosha</module>
         <module>miaosha2</module>
         <module>spring-websocket</module>
+        <module>socket-io</module>
     </modules>
 
     <properties>
