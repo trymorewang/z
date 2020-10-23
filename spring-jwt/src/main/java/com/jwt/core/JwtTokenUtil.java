@@ -1,11 +1,9 @@
 package com.jwt.core;
 
-import com.sun.x.jwt.cache.UserDetails;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -28,10 +26,9 @@ import java.util.Map;
 public class JwtTokenUtil {
     private static final String CLAIM_KEY_CREATED = "created";
     public static final String TOKEN_HEADER = "Authorization";
-    @Value("${jwt.secret:secretKey}")
-    private String secret = "secretKey";
-    @Value("${jwt.expiration:86400}")
-    private Long expiration;
+
+    private static final String secret = "secretKey";
+    private static final Long expiration = 86400L;
     /**
      * token濒死时间
      */
@@ -179,12 +176,9 @@ public class JwtTokenUtil {
                 .parse(pastToken));
 
         System.out.println(new JwtTokenUtil().getUserNameFromToken(pastToken));*/
-        KeyPrefix keyPrefix = KeyPrefix.simple();
 
-        new JwtTokenUtil().method(keyPrefix);
+        /*String val = new JwtTokenUtil().prefixKey("test");
+        System.out.println(val);*/
     }
 
-    private void method(KeyPrefix cacheKeyPrefix) {
-        System.out.println(cacheKeyPrefix.compute("key"));
-    }
 }
