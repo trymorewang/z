@@ -26,6 +26,7 @@
         <module>spring-websocket</module>
         <module>socket-io</module>
         <module>design-pattern</module>
+        <module>spring-jwt</module>
     </modules>
 
     <properties>
