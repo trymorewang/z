@@ -1,7 +1,7 @@
 package com.rocketmq.message.nomal;
 
 import com.alibaba.fastjson.JSONObject;
-import com.block.queue.core.ZQueue;
+//import com.block.queue.core.ZQueue;
 import com.rocketmq.constant.RocketConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.spring.annotation.RocketMQMessageListener;
@@ -23,17 +23,21 @@ import org.springframework.stereotype.Component;
 @Component
 @RocketMQMessageListener(consumerGroup = RocketConstant.ConsumerGroup.Z_CONSUMER, topic = RocketConstant.Topic.Z_TOPIC)
 public class StringConsumerListener implements RocketMQListener<String> {
+    @Override
+    public void onMessage(String s) {
 
-    @Autowired
+    }
+
+    /*@Autowired
     private ZQueue zQueue;
 
     @Override
-    public void onMessage(String messageExt) {
+    public void onMessage(String s) {
         //log.info("consume1 - receive message: {}", messageExt);
         JSONObject message = new JSONObject();
         String tag = "topic1";
         message.put("tag", tag);
-        message.put("body", messageExt);
+        message.put("body", s);
         zQueue.push(message);
-    }
+    }*/
 }

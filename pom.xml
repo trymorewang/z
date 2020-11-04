@@ -27,6 +27,7 @@
         <module>socket-io</module>
         <module>design-pattern</module>
         <module>spring-jwt</module>
+        <module>java-basics</module>
     </modules>
 
     <properties>
