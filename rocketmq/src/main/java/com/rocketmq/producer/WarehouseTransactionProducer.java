@@ -74,6 +74,7 @@ public class WarehouseTransactionProducer implements InitializingBean {
                 }
                 return state;
             }
+
             /**
              * RocketMQ 回调 根据本地事务是否执行成功 告诉broker 此消息是否投递成功
              * @return
@@ -109,9 +110,9 @@ public class WarehouseTransactionProducer implements InitializingBean {
     public void sendWarehouseSucessEvent(String orderId) throws JsonProcessingException, UnsupportedEncodingException, MQClientException, MQClientException {
         ObjectMapper objectMapper = new ObjectMapper();
         WzWarehouse wzWarehouse = warehouseDao.findAll().stream()
-                .filter(item->item.getOrderId().equals(orderId))
+                .filter(item -> item.getOrderId().equals(orderId))
                 .collect(Collectors.toList()).get(0);
-        if(wzWarehouse == null){
+        if (wzWarehouse == null) {
             System.out.println("not found order " + orderId);
         }
         // 构造发送的事务 消息

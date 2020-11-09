@@ -25,6 +25,7 @@ public class OrderController {
 
     /**
      * 生成订单接口
+     *
      * @param num
      * @param goodId
      * @param userId
@@ -36,7 +37,7 @@ public class OrderController {
             @RequestParam("goodId") int goodId,
             @RequestParam("userId") int userId) {
 
-        orderService.save(UUID.randomUUID().toString(), num, goodId,userId);
+        orderService.save(UUID.randomUUID().toString(), num, goodId, userId);
         return "success";
     }
 

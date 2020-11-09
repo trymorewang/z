@@ -3,10 +3,8 @@ package com.rocketmq.producer;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
-import com.rocketmq.dao.OrderDao;
 import com.rocketmq.dao.RepoDao;
 import com.rocketmq.entity.*;
-import com.rocketmq.service.OrderService;
 import com.rocketmq.service.RepoService;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.client.producer.LocalTransactionState;
@@ -72,6 +70,7 @@ public class RepoTransactionProducer implements InitializingBean {
                 }
                 return state;
             }
+
             /**
              * RocketMQ 回调 根据本地事务是否执行成功 告诉broker 此消息是否投递成功
              * @return
@@ -107,9 +106,9 @@ public class RepoTransactionProducer implements InitializingBean {
     public void sendRepoSucessEvent(String orderId) throws JsonProcessingException, UnsupportedEncodingException, MQClientException, MQClientException {
         ObjectMapper objectMapper = new ObjectMapper();
         WzRepo wzRepo = repoDao.findAll().stream()
-                .filter(item->item.getOrderId().equals(orderId))
+                .filter(item -> item.getOrderId().equals(orderId))
                 .collect(Collectors.toList()).get(0);
-        if(wzRepo == null){
+        if (wzRepo == null) {
             System.out.println("not found order " + orderId);
         }
         // 构造发送的事务 消息

@@ -20,9 +20,9 @@ import java.io.UnsupportedEncodingException;
 
 /**
  * <p>
- *  订单监听事务消息
- *
- *  假设多个消息流传 其中一个步骤出现失败如何回滚
+ * 订单监听事务消息
+ * <p>
+ * 假设多个消息流传 其中一个步骤出现失败如何回滚
  * </p>
  *
  * @Author Zhi.Wang
