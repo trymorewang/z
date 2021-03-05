@@ -1,4 +1,4 @@
-package com.design.wrapper;
+package com.design.wrapper.thread;
 
 import java.util.concurrent.Callable;
 

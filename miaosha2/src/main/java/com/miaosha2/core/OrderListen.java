@@ -57,7 +57,7 @@ public class OrderListen implements RedisHandler {
         orderMapper.insert(miaoshaOrder);
 
         //进入超时队列(支付不支付都进入超时队列，秒杀场景实际成功的订单量少)
-        redisService.zadd(timeQueue, Double.valueOf(System.currentTimeMillis()) + TimeUnit.SECONDS.toMillis(10), msgBody);
+        redisService.zadd(timeQueue, (double) System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(10), msgBody);
         return null;
     }
 }
