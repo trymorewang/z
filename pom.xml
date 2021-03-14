@@ -28,6 +28,7 @@
         <module>design-pattern</module>
         <module>spring-jwt</module>
         <module>java-basics</module>
+        <module>java8</module>
     </modules>
 
     <properties>
