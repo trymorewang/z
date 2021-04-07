@@ -1,7 +1,7 @@
-package com.design.listener.enent;
+package com.design.listener.original.enent;
 
-import com.design.listener.LotteryResult;
-import com.design.listener.enent.listener.EventListener;
+import com.design.listener.original.LotteryResult;
+import com.design.listener.original.enent.listener.EventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,7 +24,6 @@ public class EventManager {
 
     public void subscribe(Enum<EventType> eventType, EventListener listener) {
         List<EventListener> users = listeners.get(eventType);
-        System.out.println(users);
         users.add(listener);
     }
 

@@ -1,6 +1,6 @@
-package com.design.listener.enent.listener;
+package com.design.listener.original.enent.listener;
 
-import com.design.listener.LotteryResult;
+import com.design.listener.original.LotteryResult;
 
 public interface EventListener {
 

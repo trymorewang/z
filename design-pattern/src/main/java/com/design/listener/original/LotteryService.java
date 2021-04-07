@@ -1,8 +1,8 @@
-package com.design.listener;
+package com.design.listener.original;
 
-import com.design.listener.enent.EventManager;
-import com.design.listener.enent.listener.MQEventListener;
-import com.design.listener.enent.listener.MessageEventListener;
+import com.design.listener.original.enent.EventManager;
+import com.design.listener.original.enent.listener.MQEventListener;
+import com.design.listener.original.enent.listener.MessageEventListener;
 
 public abstract class LotteryService {
 
