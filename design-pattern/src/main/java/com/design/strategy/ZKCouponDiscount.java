@@ -11,7 +11,8 @@ public class ZKCouponDiscount implements ICouponDiscount {
      * 2. 保留两位小数
      * 3. 最低支付金额1元
      */
-    public BigDecimal discountAmount(Order order) {
+    @Override
+    public BigDecimal discountAmount(Order order, Coupon coupon) {
         Double couponInfo = 0.5;
         BigDecimal skuPrice = order.getPrices();
         BigDecimal discountAmount = skuPrice.multiply(new BigDecimal(couponInfo)).setScale(2, BigDecimal.ROUND_HALF_UP);

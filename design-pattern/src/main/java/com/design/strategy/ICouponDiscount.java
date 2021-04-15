@@ -12,5 +12,5 @@ public interface ICouponDiscount<T> {
      * @param order   订单信息
      * @return           优惠后金额
      */
-    BigDecimal discountAmount(Order order);
+    BigDecimal discountAmount(Order order, Coupon coupon);
 }

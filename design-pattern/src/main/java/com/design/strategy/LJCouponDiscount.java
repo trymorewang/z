@@ -2,14 +2,15 @@ package com.design.strategy;
 
 import java.math.BigDecimal;
 
-public class ZJCouponDiscount implements ICouponDiscount<Double>  {
+public class LJCouponDiscount implements ICouponDiscount<Double>  {
 
     /**
-     * 直减计算
+     * 立减计算
      * 1. 使用商品价格减去优惠价格
      * 2. 最低支付金额1元
      */
-    public BigDecimal discountAmount(Order order) {
+    @Override
+    public BigDecimal discountAmount(Order order, Coupon coupon) {
         Double couponInfo = 10.0;
         BigDecimal skuPrice = order.getPrices();
         BigDecimal discountAmount = skuPrice.subtract(new BigDecimal(couponInfo));

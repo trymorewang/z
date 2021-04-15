@@ -1,13 +1,17 @@
 package com.design.strategy;
 
-import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DiscountsContext<T> {
+/**
+ * 优惠券上下文
+ * @Author: zhi.wang
+ * @Date: 2021/4/9 19:04
+ */
+public class DiscountsContext {
 
     public static final String MJ = "MJ";
-    public static final String ZJ = "ZJ";
+    public static final String LJ = "LJ";
     public static final String ZK = "ZK";
 
     //简单工厂的工厂容器
@@ -15,7 +19,7 @@ public class DiscountsContext<T> {
 
     static  {
         discountsFactory.put(MJ, new MJCouponDiscount());
-        discountsFactory.put(ZJ, new ZJCouponDiscount());
+        discountsFactory.put(LJ, new LJCouponDiscount());
         discountsFactory.put(ZK, new ZKCouponDiscount());
     }
 

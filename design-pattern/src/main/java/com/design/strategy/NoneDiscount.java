@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public class NoneDiscount implements ICouponDiscount{
     @Override
-    public BigDecimal discountAmount(Order order) {
+    public BigDecimal discountAmount(Order order, Coupon coupon) {
         return null;
     }
 }
