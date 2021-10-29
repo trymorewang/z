@@ -1,5 +1,7 @@
 package com.design.chain;
 
+import com.google.common.collect.Lists;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,8 +29,8 @@ public class HandlerChain {
     // 持有所有Handler:
     private List<Handler> handlers = new ArrayList<>();
 
-    public void addHandler(Handler handler) {
-        this.handlers.add(handler);
+    public void addHandler(List<Handler> handlers) {
+        this.handlers.addAll(handlers);
     }
 
     public boolean process(Request request) {
@@ -49,9 +51,7 @@ public class HandlerChain {
         // Handler添加的顺序很重要，如果顺序不对，处理的结果可能就不是符合要求的
         // 构造责任链:
         HandlerChain chain = new HandlerChain();
-        chain.addHandler(new ManagerHandler());
-        chain.addHandler(new DirectorHandler());
-        chain.addHandler(new CEOHandler());
+        chain.addHandler(Lists.newArrayList(new ManagerHandler(), new DirectorHandler(), new CEOHandler()));
         // 处理请求:
         chain.process(new Request("Bob", new BigDecimal("123.45")));
         chain.process(new Request("Alice", new BigDecimal("1234.56")));
